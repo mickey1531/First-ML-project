@@ -23,7 +23,8 @@ class DataIngestion:
             logging.info("Reading completed mysql database")
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
 
-            data = read_sql_data()
+            # data = read_sql_data()
+            data = pd.read_csv(os.path.join("notebook/data","raw.csv"))     # This is added to test the data transformation and to not pull data from sql again
             data.to_csv(self.ingestion_config.raw_data_path, index=False, header=True)
 
             train_set,test_set = train_test_split(data, test_size=0.2, random_state=42)

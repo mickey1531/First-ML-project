@@ -1,0 +1,9 @@
+[ 2026-02-03 18:04:34,909 ] 10 root - INFO - The exeuction has started
+[ 2026-02-03 18:04:34,909 ] 23 root - INFO - Reading completed mysql database
+[ 2026-02-03 18:04:34,946 ] 34 root - INFO - Data ingestion is completed.
+[ 2026-02-03 18:04:35,005 ] 60 root - INFO - Reading the train and test file
+[ 2026-02-03 18:04:35,005 ] 40 root - INFO - Categorical Column : ['gender', 'race_ethnicity', 'parental_level_of_education', 'lunch', 'test_preparation_course']
+[ 2026-02-03 18:04:35,005 ] 41 root - INFO - Numerical Column : ['writing_score', 'reading_score']
+[ 2026-02-03 18:04:35,007 ] 72 root - INFO - Applying preprocessing on training and test dataframe
+[ 2026-02-03 18:04:35,020 ] 80 root - INFO - Saved preprocessing object
+[ 2026-02-03 18:04:35,020 ] 27 root - INFO - Custom Exception
