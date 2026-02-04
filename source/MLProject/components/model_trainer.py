@@ -16,6 +16,9 @@ from source.MLProject.utils import evalutate_model, save_object
 from source.MLProject.logger import logging
 from source.MLProject.exception import CustomException
 
+import mlflow
+import mlflow.sklearn
+from urllib.parse import urlparse
 
 
 class ModelTrainerConfig:
@@ -24,6 +27,13 @@ class ModelTrainerConfig:
 class ModelTraining:
     def __init__(self):
         self.model_trainer_config = ModelTrainerConfig()
+
+    def eval_metrics(self,actual,pred):
+        rmse = np.sqrt(mean_squared_error(actual,pred))
+        mae = mean_absolute_error(actual,pred)
+        r2 = r2_score(actual,pred)
+        return rmse, mae, r2
+
 
 
     def initiate_model_trainer(self,train_arr, test_arr):
@@ -84,9 +94,41 @@ class ModelTraining:
             best_model_name = list(model_result.keys())[list(model_result.values()).index(best_model_score)]
 
             best_model = models[best_model_name]
+
+
+
+            # print(f"This is the best model : {best_model_name}")
             
+            # model_names =  list(models.keys())
 
+            # actual_model = ""
+            # for model_i in model_names:
+            #     if best_model_name == model_i:
+            #         actual_model = actual_model + model_i
 
+            # best_params = params[actual_model]
+            
+            # # mlflow.set_registry_uri("https://dagshub.com/mickey1531/First-ML-project.mlflow")
+            # trackng_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
+            # with mlflow.start_run():
+            #     predicted_qualities = best_model.predict(x_test)
+
+            #     rmse,mae,r2 = self.eval_metrics(y_test,predicted_qualities)
+
+            #     mlflow.log_params(best_params)
+            #     mlflow.log_metric("rmse", rmse)
+            #     mlflow.log_metric("mae", mae)
+            #     mlflow.log_metric("r2", r2)
+                
+            #     if trackng_url_type_store != "file":
+            #         mlflow.sklearn.log_model(best_model,"model",registered_model_name=actual_model)
+            #     else:
+            #         mlflow.sklearn.log_model(best_model,"model")
+
+            
+            
+            
+            
             if best_model_score<0.6:
                 raise CustomException("No best model found",sys)  # type: ignore
             logging.info(f"Best model found on both training and test dataset")

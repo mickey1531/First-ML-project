@@ -1,3 +1,15 @@
+# import dagshub
+
+# dagshub.init(repo_owner='mickey1531', repo_name='First-ML-project', mlflow=True)
+
+# import mlflow
+# with mlflow.start_run():
+#   mlflow.log_param('parameter name', 'value')
+#   mlflow.log_metric('metric name', 1)
+
+
+
+
 from source.MLProject.logger import logging
 from source.MLProject.exception import CustomException
 from source.MLProject.components.data_ingestion import DataIngestion
@@ -19,6 +31,9 @@ if __name__ == "__main__":
 
         data_transformation = DataTransformation()
         train_arr, test_arr ,_ =  data_transformation.initiate_data_transformation(train_path, test_path)
+
+
+
 
         data_modeling = ModelTraining()
         score = data_modeling.initiate_model_trainer(train_arr,test_arr)
